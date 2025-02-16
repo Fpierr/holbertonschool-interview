@@ -3,8 +3,14 @@
 Script that reads standard input line by line and computes statistics.
 """
 
+
 import sys
 
+# Initialize counters
+statistics = {"200": 0, "301": 0, "400": 0,
+              "401": 0, "403": 0, "404": 0, "405": 0, "500": 0}
+line_count = 0
+total_size = 0
 
 def print_statistics(stats, total_size):
     """Displays log statistics."""
@@ -12,7 +18,6 @@ def print_statistics(stats, total_size):
     for code, count in sorted(stats.items()):
         if count > 0:
             print(f"{code}: {count}")
-
 
 def parse_line(line, stats):
     """Parses a log line and updates statistics."""
@@ -24,13 +29,6 @@ def parse_line(line, stats):
         return int(elements[-1])
     except (IndexError, ValueError):
         return 0
-
-
-# Initialize counters
-statistics = {"200": 0, "301": 0, "400": 0,
-              "401": 0, "403": 0, "404": 0, "405": 0, "500": 0}
-line_count = 0
-total_size = 0
 
 try:
     for line in sys.stdin:
