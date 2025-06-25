@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""list of Coins and tota
+"""list of Coins and total
 """
 
 
