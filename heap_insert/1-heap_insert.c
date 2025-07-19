@@ -29,12 +29,12 @@ heap_t *heapify_up(heap_t *node)
 }
 
 /**
- * find_insertion_point - Finds the first parent with a free child
+ * find_insert_parent - Finds the first parent with a free child
  * @root: Pointer to the root node
  *
  * Return: Pointer to parent node for insertion
  */
-heap_t *find_insertion_point(heap_t *root)
+heap_t *find_insert_parent(heap_t *root)
 {
 	heap_t *queue[1024];
 	int head = 0, tail = 0;
@@ -80,7 +80,7 @@ heap_t *heap_insert(heap_t **root, int value)
 		return (*root);
 	}
 
-	insert_point = find_insertion_point(*root);
+	insert_point = find_insert_parent(*root);
 	if (!insert_point)
 		return (NULL);
 
