@@ -1,11 +1,12 @@
 #include <stdlib.h>
 #include "binary_trees.h"
+
 /**
  * heapify_up - Restores Max Heap property by swapping with parents
  * @node: Pointer to the node to heapify
+ *
  * Return: New position of node after heapifying
  */
-
 heap_t *heapify_up(heap_t *node)
 {
 	heap_t *parent;
@@ -28,8 +29,9 @@ heap_t *heapify_up(heap_t *node)
 }
 
 /**
- * find_insert_parent - Finds the first parent with a free child
+ * find_insertion_point - Finds the first parent with a free child
  * @root: Pointer to the root node
+ *
  * Return: Pointer to parent node for insertion
  */
 heap_t *find_insertion_point(heap_t *root)
@@ -62,6 +64,7 @@ heap_t *find_insertion_point(heap_t *root)
  * heap_insert - Inserts a value into a Max Binary Heap
  * @root: Double pointer to root node of the Heap
  * @value: Value to insert
+ *
  * Return: Pointer to inserted node, or NULL on failure
  */
 heap_t *heap_insert(heap_t **root, int value)
@@ -92,3 +95,4 @@ heap_t *heap_insert(heap_t **root, int value)
 
 	return (heapify_up(new_node));
 }
+
