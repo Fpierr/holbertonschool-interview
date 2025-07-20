@@ -7,39 +7,36 @@
  *
  * Return: Pointer to the first node where value is located, or NULL
  */
-skiplist_t *linear_skip(skiplist_t *head, int value)
+skiplist_t *linear_skip(skiplist_t *list, int value)
 {
-	skiplist_t *jump;
+    skiplist_t *express = list;
 
-	if (!head)
-		return (NULL);
+    if (!list)
+        return (NULL);
 
-	jump = head->express;
-	while (jump && jump->n < value)
-	{
-		printf("Value checked at index [%lu] = [%d]\n", jump->index, jump->n);
-		head = jump;
-		jump = jump->express;
-	}
+    while (express->express && express->express->n < value)
+    {
+        express = express->express;
+        printf("Value checked at index [%lu] = [%d]\n", express->index, express->n);
+    }
 
-	if (!jump)
-	{
-		jump = head;
-		while (jump->next)
-			jump = jump->next;
-	}
+    /* Afficher la dernière vérification express (même si >= value) */
+    if (express->express)
+    {
+        express = express->express;
+        printf("Value checked at index [%lu] = [%d]\n", express->index, express->n);
+    }
 
-	printf("Value found between indexes [%lu] and [%lu]\n",
-	       head->index, jump->index);
+    printf("Value found between indexes [%lu] and [%lu]\n", list->index, express->index);
 
-	while (head && head->index <= jump->index)
-	{
-		printf("Value checked at index [%lu] = [%d]\n", head->index, head->n);
-		if (head->n == value)
-			return (head);
-		head = head->next;
-	}
+    /* Recherche linéaire classique entre list et express */
+    while (list && list->index <= express->index)
+    {
+        printf("Value checked at index [%lu] = [%d]\n", list->index, list->n);
+        if (list->n == value)
+            return (list);
+        list = list->next;
+    }
 
-	return (NULL);
+    return (NULL);
 }
-
