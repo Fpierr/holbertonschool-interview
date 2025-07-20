@@ -34,4 +34,3 @@ fetch(`https://swapi-api.hbtn.io/api/films/${id}/`)
       Promise.resolve()
     )
   );
-
