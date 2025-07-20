@@ -1,12 +1,15 @@
 #!/usr/bin/node
 
+
 const https = require('https');
+
 
 const id = process.argv[2];
 if (!id) {
 	console.error('Usage: ./0-starwars_characters.js <movie_id>');
 	process.exit(1);
 }
+
 
 function fetch (url) {
   return new Promise(resolve => {
@@ -17,6 +20,7 @@ function fetch (url) {
     });
   });
 }
+
 
 fetch(`https://swapi-api.hbtn.io/api/films/${id}/`)
   .then(film => film.characters.reduce((p, url) =>
