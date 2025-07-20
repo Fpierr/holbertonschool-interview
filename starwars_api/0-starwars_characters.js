@@ -1,6 +1,6 @@
 #!/usr/bin/node
 
-const https = require('https');
+const fetch = require('node-fetch');
 
 const id = process.argv[2];
 if (!id) {
@@ -8,29 +8,20 @@ if (!id) {
   process.exit(1);
 }
 
-function fetch (url) {
-  return new Promise(resolve => {
-    https.get(url, res => {
-      let data = '';
-      res.on('data', chunk => {
-        data += chunk;
-      });
-      res.on('end', () => {
-        resolve(JSON.parse(data));
-      });
-    });
-  });
+async function main() {
+  try {
+    const res = await fetch(`https://swapi-api.hbtn.io/api/films/${id}/`);
+    const film = await res.json();
+
+    for (const url of film.characters) {
+      const resChar = await fetch(url);
+      const character = await resChar.json();
+      console.log(character.name);
+    }
+  } catch (error) {
+    console.error('Error:', error.message);
+  }
 }
 
-fetch(`https://swapi-api.hbtn.io/api/films/${id}/`)
-  .then(film =>
-    film.characters.reduce(
-      (p, url) =>
-        p.then(() =>
-          fetch(url).then(character => {
-            console.log(character.name);
-          })
-        ),
-      Promise.resolve()
-    )
-  );
+main();
+
