@@ -3,7 +3,10 @@
 const https = require('https');
 
 const id = process.argv[2];
-if (!id) return console.error('Usage: ./0-starwars_characters.js <movie_id>');
+if (!id) {
+	console.error('Usage: ./0-starwars_characters.js <movie_id>');
+	process.exit(1);
+}
 
 function fetch (url) {
   return new Promise(resolve => {
