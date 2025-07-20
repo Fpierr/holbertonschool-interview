@@ -8,7 +8,7 @@ if (!id) {
   process.exit(1);
 }
 
-function fetch(url) {
+function fetch (url) {
   return new Promise(resolve => {
     https.get(url, res => {
       let data = '';
