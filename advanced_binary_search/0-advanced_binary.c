@@ -49,7 +49,7 @@ int binary_search_recursive(int *array, int left, int right, int value)
 	else if (array[mid] > value)
 		return (binary_search_recursive(array, left, mid - 1, value));
 	else
-		return (binary_search_recursive(array, left, mid + 1, right, value));
+		return (binary_search_recursive(array, mid + 1, right, value));
 }
 
 /**
