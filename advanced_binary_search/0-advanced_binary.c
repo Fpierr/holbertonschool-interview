@@ -1,4 +1,5 @@
 #include "search_algos.h"
+#include <stdio.h>
 
 /**
 * find_index - finds the index of the 1st occurrence of a value in an array
