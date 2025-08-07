@@ -2,66 +2,69 @@
 #include <stdio.h>
 
 /**
-* find_index - finds the index of the 1st occurrence of a value in an array
-*@an_array:    (int*)  sorted array of integers
-*@start:       (int)   index indicating the start of the sub-array
-*@end:         (int)   index indicating the end of the sub-array
-*@val:         (int)   value to be finded
-*Return:		pos:	(int)   index where value is located or -1 otherwise
-*/
-
-int find_index(int *an_array, size_t start, size_t end, int val)
+ * print_array - Prints the elements of an array
+ * @array: pointer to the array
+ * @left: left index
+ * @right: right index
+ */
+void print_array(int *array, int left, int right)
 {
-	size_t i, index, pos, len;
-
-	if (start == end)
-		return (-1);
+	int i;
 
 	printf("Searching in array: ");
-	for (i = start; i < end; i++)
+	for (i = left; i <= right; i++)
 	{
-		printf("%d", an_array[i]);
-		if (i < end - 1)
+		printf("%d", array[i]);
+		if (i < right)
 			printf(", ");
 	}
 	printf("\n");
-
-	pos = index = (start + end - 1) / 2;
-	len = end - start;
-
-	if (len > 0 && (an_array[index] == val) && (an_array[index - 1] > val))
-		pos = index;
-
-	else if ((an_array[index] == val) && (an_array[index - 1] == val))
-		pos = find_index(an_array, start, index + 1, val);
-
-	else if (an_array[index] < val)
-		pos = find_index(an_array, index + 1, end, val);
-
-	else if (an_array[index] > val)
-		pos = find_index(an_array, start, index + 1, val);
-
-	else if (an_array[index] == val)
-		pos = index;
-
-	else
-		pos = -1;
-
-	return (pos);
 }
 
 /**
- * advanced_binary - Finds an item and its position in an sorted array
- * @array:  (int)       Array of elements
- * @size:   (size_t)    Lenght of the array
- * @value:  (int)       value to be located in the array
-  * Return:	@pos:    (int)       index position if found or -1 otherwise
+ * binary_search_recursive - Recursive binary search to find first occurrence
+ * @array: pointer to array
+ * @left: start index
+ * @right: end index
+ * @value: value to search
+ * Return: index of first occurrence, or -1
  */
+int binary_search_recursive(int *array, int left, int right, int value)
+{
+	int mid;
 
+	if (left > right)
+		return (-1);
+
+	print_array(array, left, right);
+
+	mid = left + (right - left) / 2;
+
+	if (array[mid] == value)
+	{
+		if (mid == left || array[mid - 1] != value)
+			return (mid);
+		/* Inclure mid dans la recherche gauche pour afficher correctement */
+		return (binary_search_recursive(array, left, mid, value));
+	}
+	else if (array[mid] < value)
+		return (binary_search_recursive(array, mid + 1, right, value));
+	else
+		return (binary_search_recursive(array, left, mid - 1, value));
+}
+
+/**
+ * advanced_binary - wrapper function for binary_search_recursive
+ * @array: sorted array
+ * @size: number of elements
+ * @value: value to search
+ * Return: index of first occurrence or -1
+ */
 int advanced_binary(int *array, size_t size, int value)
 {
-	int index;
+	if (array == NULL || size == 0)
+		return (-1);
 
-	index = (!array || size < 1) ? -1 : find_index(array, 0, size, value);
-	return (index);
+	return (binary_search_recursive(array, 0, (int)size - 1, value));
 }
+
