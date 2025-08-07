@@ -32,8 +32,9 @@ void print_array(int *array, int left, int right)
 int binary_search_recursive(int *array, int left, int right, int value)
 {
 	int mid;
+	int i;
 
-	if (left > right)
+	if (right < left)
 		return (-1);
 
 	print_array(array, left, right);
@@ -43,13 +44,10 @@ int binary_search_recursive(int *array, int left, int right, int value)
 	if (array[mid] == value && (mid == left || array[mid - 1] != value))
 		return (mid);
 
-	if (array[mid] == value && mid > left && array[mid - 1] == value)
+	if (array[mid] >= value)
 		return (binary_search_recursive(array, left, mid, value));
 
-	if (array[mid] < value)
-		return (binary_search_recursive(array, mid + 1, right, value));
-	else
-		return (binary_search_recursive(array, left, mid - 1, value));
+	return (binary_search_recursive(array, mid + 1, right, value));
 }
 
 /**
