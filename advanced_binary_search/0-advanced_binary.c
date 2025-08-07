@@ -40,14 +40,13 @@ int binary_search_recursive(int *array, int left, int right, int value)
 
 	mid = left + (right - left) / 2;
 
-	if (array[mid] == value)
-	{
-		if (mid == left || array[mid - 1] != value)
-			return (mid);
-		/* Inclure mid dans la recherche gauche pour afficher correctement */
+	if (array[mid] == value && (mid == left || array[mid - 1] != value))
+		return (mid);
+
+	if (array[mid] == value && mid > left && array[mid - 1] == value)
 		return (binary_search_recursive(array, left, mid, value));
-	}
-	else if (array[mid] < value)
+
+	if (array[mid] < value)
 		return (binary_search_recursive(array, mid + 1, right, value));
 	else
 		return (binary_search_recursive(array, left, mid - 1, value));
