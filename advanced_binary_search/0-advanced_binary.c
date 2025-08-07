@@ -1,25 +1,15 @@
-
-/*
- * File: 104-advanced_binary.c
- * Auth: Brennan D Baraban
- */
-
 #include "search_algos.h"
 #include <stdio.h>
 
 /**
-  * advanced_binary_recursive - Searches recursively for a value in a sorted
-  *                             array of integers using binary search.
-  * @array: A pointer to the first element of the [sub]array to search.
-  * @left: The starting index of the [sub]array to search.
-  * @right: The ending index of the [sub]array to search.
-  * @value: The value to search for.
-  *
-  * Return: If the value is not present, -1.
-  *         Otherwise, the index where the value is located.
-  *
-  * Description: Prints the [sub]array being searched after each change.
-  */
+ * advanced_binary_recursive - Recursive binary search.
+ * @array: Pointer to subarray to search.
+ * @left: Left index.
+ * @right: Right index.
+ * @value: Value to find.
+ *
+ * Return: Index of value or -1 if not found.
+ */
 int advanced_binary_recursive(int *array, size_t left, size_t right, int value)
 {
 	size_t i;
@@ -27,7 +17,6 @@ int advanced_binary_recursive(int *array, size_t left, size_t right, int value)
 	if (right < left)
 		return (-1);
 
-	printf("Searching in array: ");
 	for (i = left; i < right; i++)
 		printf("%d, ", array[i]);
 	printf("%d\n", array[i]);
@@ -41,17 +30,13 @@ int advanced_binary_recursive(int *array, size_t left, size_t right, int value)
 }
 
 /**
-  * advanced_binary - Searches for a value in a sorted array
-  *                   of integers using advanced binary search.
-  * @array: A pointer to the first element of the array to search.
-  * @size: The number of elements in the array.
-  * @value: The value to search for.
-  *
-  * Return: If the value is not present or the array is NULL, -1.
-  *         Otherwise, the first index where the value is located.
-  *
-  * Description: Prints the [sub]array being searched after each change.
-  */
+ * advanced_binary - Advanced binary search wrapper.
+ * @array: Pointer to array.
+ * @size: Number of elements.
+ * @value: Value to find.
+ *
+ * Return: Index of value or -1 if not found or array NULL.
+ */
 int advanced_binary(int *array, size_t size, int value)
 {
 	if (array == NULL || size == 0)
