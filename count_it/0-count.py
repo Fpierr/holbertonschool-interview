@@ -6,10 +6,10 @@ Usage from 0-main.py:
     count_words(subreddit, ['python', 'java', 'javascript'])
 """
 
-import __future__ import annotations
+from __future__ import annotations
+from typing import Dict, List, Optional
 import re
 import requests
-from typing import Dict, List, Optional
 
 
 def count_words(subreddit: str,
