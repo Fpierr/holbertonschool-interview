@@ -17,12 +17,12 @@ def count_words(subreddit, word_list):
     count of given keywords (case-insensitive, exact word match).
     """
     def _count_words(
-            subreddit,
-            word_list,
-            after=None,
-            counts=None,
-            weights=None
-        ):
+        subreddit,
+        word_list,
+        after=None,
+        counts=None,
+        weights=None
+    ):
         if counts is None:
             counts = {}
         if weights is None:
@@ -65,7 +65,8 @@ def count_words(subreddit, word_list):
             _count_words(subreddit, word_list, next_after, counts, weights)
             return
 
-        results = [(word, count) for word, count in counts.items() if count > 0]
+        results = [(word, count)
+                   for word, count in counts.items() if count > 0]
         if not results:
             return
 
