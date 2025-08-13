@@ -6,9 +6,9 @@ Usage from 0-main.py:
     count_words(subreddit, ['python', 'java', 'javascript'])
 """
 
+from __future__ import annotations
 import re
 import requests
-from __future__ import annotations
 from typing import Dict, List, Optional
 
 
