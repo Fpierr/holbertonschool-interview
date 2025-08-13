@@ -6,10 +6,10 @@ Usage from 0-main.py:
     count_words(subreddit, ['python', 'java', 'javascript'])
 """
 
-from __future__ import annotations
-from typing import Dict, List, Optional
+import __future__ import annotations
 import re
 import requests
+from typing import Dict, List, Optional
 
 
 def count_words(subreddit: str,
@@ -74,4 +74,3 @@ def count_words(subreddit: str,
     results.sort(key=lambda x: (-x[1], x[0]))
     for w, c in results:
         print(f"{w}: {c}")
-
