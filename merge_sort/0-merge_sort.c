@@ -7,7 +7,6 @@
  * @left: pointer to left array
  * @right: pointer to right array
  **/
-
 void merge(size_t size, int *array, int *left, int *right)
 {
 	int i, j, k, l_lengh, r_lengh;
@@ -40,11 +39,10 @@ void merge(size_t size, int *array, int *left, int *right)
  * @array: pointer to the head of the array
  * @size: size of the array
  **/
-
 void merge_sort(int *array, size_t size)
 {
 	size_t middle, i;
-	int left[MAX], right[MAX];
+	int left[SIZE_MAX], right[SIZE_MAX];
 
 	if (!array || size < 2)
 		return;
