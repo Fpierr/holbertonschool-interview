@@ -3,10 +3,12 @@ Tasks
 mandatory
 Write a function that compares two strings and returns 1 if the strings can be considered identical, otherwise return 0.
 
-Prototype: int wildcmp(char *s1, char *s2);
+Prototype: `int wildcmp(char *s1, char *s2)`;
 s2 can contain the special character *.
 The special char * can replace any string (including an empty string)
 alexa@ubuntu:~/wild_cmp$ cat 0-main.c
+
+```
 #include "holberton.h"
 #include <stdio.h>
 
@@ -45,6 +47,10 @@ int main(void)
     printf("%d\n", r);
     return (0);
 }
+
+```
+
+```
 alexa@ubuntu:~/wild_cmp$ gcc -Wall -pedantic -Werror -Wextra 0-main.c 0-wildcmp.c -o 0-wildcmp
 alexa@ubuntu:~/wild_cmp$ ./0-wildcmp 
 1
@@ -60,6 +66,8 @@ alexa@ubuntu:~/wild_cmp$ ./0-wildcmp
 0
 0
 alexa@ubuntu:~/wild_cmp$ 
+```
+
 Repo:
 
 GitHub repository: holbertonschool-interview
